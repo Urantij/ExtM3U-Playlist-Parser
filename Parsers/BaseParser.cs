@@ -1,7 +1,7 @@
-namespace PlaylistParser.Playlists
+namespace PlaylistParser.Parsers
 {
-    //https://datatracker.ietf.org/doc/html/rfc8216#section-4.1
-    public abstract class BasePlaylist
+    public abstract class BaseParser<T>
+        where T : class
     {
         protected static readonly HashSet<string> basicPlaylistTags = new()
         {
@@ -45,17 +45,15 @@ namespace PlaylistParser.Playlists
             "#EXT-X-START"
         };
 
-        public event EventHandler<string>? CommentLineEncountered;
-        public event EventHandler<string>? UnknownLineEncountered;
+        public event EventHandler<string>? CommentLineFound;
+        public event EventHandler<string>? UnknownLineFound;
 
-        /// <exception cref="PlaylistException">Если не удалось пропарсить</exception>
-        protected BasePlaylist(string text)
-        {
-            Parse(text);
-        }
+        /* TODO проблема, шо поля плейлистов публично доступны для изменений.
+         * Можно копировать все поля в парсер, класть их все разом и ридоинл
+         * Или Можно сделать гет интернал сет */
+        public abstract T Parse(string text);
 
-        /// <exception cref="PlaylistException">Если не удалось пропарсить</exception>
-        private void Parse(string text)
+        protected void StartParsing(string text)
         {
             try
             {
@@ -94,26 +92,26 @@ namespace PlaylistParser.Playlists
                         //#EXT-X-DATERANGE:ID="quartile-1604230022-0",CLASS="twitch-ad-quartile",START-DATE="2020-11-01T11:27:02.104Z",DURATION=2.002,X-TV-TWITCH-AD-QUARTILE="0"
 
                         string tag;
-                        string? attributeValue;
+                        string? attributesValue;
 
                         int tagSeparatorIndex = line.IndexOf(':');
                         if (tagSeparatorIndex != -1)
                         {
                             tag = line[..tagSeparatorIndex];
-                            attributeValue = line[(tagSeparatorIndex + 1)..];
+                            attributesValue = line[(tagSeparatorIndex + 1)..];
                         }
                         else
                         {
                             tag = line;
-                            attributeValue = null;
+                            attributesValue = null;
                         }
 
-                        OnTagLine(tag, attributeValue);
+                        OnTagLine(tag, attributesValue);
                         continue;
                     }
                     else if (line[0] == '#')
                     {
-                        OnCommentLine(line);
+                        CommentLineFound?.Invoke(this, line);
                         continue;
                     }
 
@@ -121,10 +119,10 @@ namespace PlaylistParser.Playlists
                     {
                         OnUriLine(line, result);
                     }
-                    else OnUnknownLine(line);
+                    else UnknownLineFound?.Invoke(this, line);
                 }
 
-                ContinueParsing(text);
+                ContinueParsing();
             }
             catch (PlaylistException)
             {
@@ -136,30 +134,10 @@ namespace PlaylistParser.Playlists
             }
         }
 
-        /// <summary>
-        /// Вызывается после того, как строчки пропарсились
-        /// </summary>
-        protected virtual void ContinueParsing(string text)
-        {
-        }
+        protected virtual void ContinueParsing() { }
 
-        protected virtual void OnTagLine(string tag, string? attributes)
-        {
-        }
+        protected virtual void OnTagLine(string tag, string? attributesValue) { }
 
-        protected virtual void OnUriLine(string line, Uri uri)
-        {
-        }
-
-        private void OnCommentLine(string line)
-        {
-            CommentLineEncountered?.Invoke(this, line);
-        }
-
-        private void OnUnknownLine(string line)
-        {
-            UnknownLineEncountered?.Invoke(this, line);
-        }
-
+        protected virtual void OnUriLine(string tag, Uri uri) { }
     }
 }
