@@ -26,13 +26,13 @@ namespace PlaylistParser.Models
 
             var extInfTagInfo = tags.Single(t => t.tag == "#EXTINF");
             tags.Remove(extInfTagInfo);
-            infTag = new InfTag(extInfTagInfo.attributes!);
+            infTag = new InfTag(extInfTagInfo.value!);
 
             var programDateTagInfo = tags.SingleOrDefault(t => t.tag == "#EXT-X-PROGRAM-DATE-TIME");
             if (programDateTagInfo != null)
             {
                 tags.Remove(programDateTagInfo);
-                programDateTag = new XProgramDateTimeTag(programDateTagInfo.attributes!);
+                programDateTag = new XProgramDateTimeTag(programDateTagInfo.value!);
             }
         }
     }

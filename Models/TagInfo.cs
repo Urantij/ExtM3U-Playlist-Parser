@@ -3,12 +3,12 @@ namespace PlaylistParser.Models
     public class TagInfo
     {
         public readonly string tag;
-        public readonly string? attributes;
+        public readonly string? value;
 
-        public TagInfo(string tag, string? attributes)
+        public TagInfo(string tag, string? value)
         {
             this.tag = tag;
-            this.attributes = attributes;
+            this.value = value;
         }
     }
 }

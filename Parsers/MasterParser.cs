@@ -44,7 +44,7 @@ namespace PlaylistParser.Parsers
             }
         }
 
-        protected override void OnTagLine(string tag, string? attributesValue)
+        protected override void OnTagLine(string tag, string? value)
         {
             //зачем
             //if (mediaPlaylistTags.Contains(tag) || mediaSegmentTags.Contains(tag)) throw new PlaylistException($"Bad tag in master playlist\n{tag}:{attributes}");
@@ -57,12 +57,12 @@ namespace PlaylistParser.Parsers
                     throw new PlaylistException("Repeated EXT-X-STREAM-INF tag");
                 }*/
 
-                lastStreamInfTag = new XStreamInfTag(attributesValue!);
+                lastStreamInfTag = new XStreamInfTag(value!);
                 return;
             }
             else if (tag == "#EXT-X-MEDIA")
             {
-                var mediaTag = new MediaTag(attributesValue!);
+                var mediaTag = new MediaTag(value!);
 
                 if (!mediaDict.TryGetValue(mediaTag.groupId, out var list))
                 {
@@ -74,7 +74,7 @@ namespace PlaylistParser.Parsers
                 return;
             }
 
-            var tagInfo = new TagInfo(tag, attributesValue);
+            var tagInfo = new TagInfo(tag, value);
             globalTags.Add(tagInfo);
         }
 

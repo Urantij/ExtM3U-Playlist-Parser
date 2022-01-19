@@ -92,21 +92,21 @@ namespace PlaylistParser.Parsers
                         //#EXT-X-DATERANGE:ID="quartile-1604230022-0",CLASS="twitch-ad-quartile",START-DATE="2020-11-01T11:27:02.104Z",DURATION=2.002,X-TV-TWITCH-AD-QUARTILE="0"
 
                         string tag;
-                        string? attributesValue;
+                        string? value;
 
                         int tagSeparatorIndex = line.IndexOf(':');
                         if (tagSeparatorIndex != -1)
                         {
                             tag = line[..tagSeparatorIndex];
-                            attributesValue = line[(tagSeparatorIndex + 1)..];
+                            value = line[(tagSeparatorIndex + 1)..];
                         }
                         else
                         {
                             tag = line;
-                            attributesValue = null;
+                            value = null;
                         }
 
-                        OnTagLine(tag, attributesValue);
+                        OnTagLine(tag, value);
                         continue;
                     }
                     else if (line[0] == '#')
@@ -136,7 +136,7 @@ namespace PlaylistParser.Parsers
 
         protected virtual void ContinueParsing() { }
 
-        protected virtual void OnTagLine(string tag, string? attributesValue) { }
+        protected virtual void OnTagLine(string tag, string? value) { }
 
         protected virtual void OnUriLine(string tag, Uri uri) { }
     }
