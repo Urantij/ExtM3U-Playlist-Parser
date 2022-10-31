@@ -4,6 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>ExtM3U-Playlist-Parser</PackageId>
+    <Version>1.0.0</Version>
+    <Description>
+      Парсит EXTM3U плейлисты, преимущественно с твича.
+    </Description>
   </PropertyGroup>
 
 </Project>
