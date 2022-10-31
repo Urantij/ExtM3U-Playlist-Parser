@@ -63,7 +63,7 @@ namespace PlaylistParser.Tags
         {
             if (rawAttributes.TryGetValue(key, out string? stringValue))
             {
-                value = int.Parse(stringValue);
+                value = int.Parse(stringValue, CultureInfo.InvariantCulture);
                 return true;
             }
 
@@ -75,7 +75,7 @@ namespace PlaylistParser.Tags
         {
             if (rawAttributes.TryGetValue(key, out string? stringValue))
             {
-                value = float.Parse(stringValue, CultureInfo.InvariantCulture.NumberFormat);
+                value = float.Parse(stringValue, CultureInfo.InvariantCulture);
                 return true;
             }
 

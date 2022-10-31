@@ -6,7 +6,7 @@ namespace PlaylistParser.Parsers
 {
     public class MediaParser : BaseParser<MediaPlaylist>
     {
-        /* В процессе парсинга, если мы встречаем теги медиа сегментов, мы должны их хранить
+        /* В процессе парсинга, если мы встречаем теги медиа сегментов, мы должны их хранить.
          * А затем, когда находим ссылку, скрепляем это всё вместе и записываем. */
         private List<TagInfo> currentMediaSegmentsTags = new();
 
@@ -21,14 +21,13 @@ namespace PlaylistParser.Parsers
         {
             StartParsing(text);
 
+            // The EXT-X-TARGETDURATION tag is REQUIRED
             if (targetDurationTag == null)
             {
                 throw new PlaylistException($"{nameof(MediaPlaylist)} {nameof(targetDurationTag)}");
             }
 
-            MediaPlaylist result = new(globalTags, mediaSegments, targetDurationTag, mediaSequenceTag, endList);
-
-            return result;
+            return new MediaPlaylist(globalTags, mediaSegments, targetDurationTag, mediaSequenceTag, endList);
         }
 
         /*protected override void ContinueParsing(string text)
@@ -39,10 +38,10 @@ namespace PlaylistParser.Parsers
 
         protected override void OnTagLine(string tag, string? value)
         {
-            //зачем?
-            //if (masterPlaylistTags.Contains(tag)) throw new PlaylistException($"Bad tag in media playlist\n{tag}:{value}");
+            // зачем?
+            // if (masterPlaylistTags.Contains(tag)) throw new PlaylistException($"Bad tag in media playlist\n{tag}:{value}");
 
-            //можно было бы быть 5хедом и сделать словарик, но как бы ну как бы ну как бы ну впадлу да
+            // можно было бы быть 5хедом и сделать словарик, но как бы ну как бы ну как бы ну впадлу да
             if (tag == "#EXT-X-TARGETDURATION")
             {
                 targetDurationTag = new XTargetDurationTag(value!);

@@ -8,7 +8,7 @@ namespace PlaylistParser.Tags.Master
 
         public XTwitchInfoTag(string value) : base(value)
         {
-            streamTime = float.Parse(rawAttributes["STREAM-TIME"], CultureInfo.InvariantCulture.NumberFormat);
+            streamTime = float.Parse(rawAttributes["STREAM-TIME"], CultureInfo.InvariantCulture);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace PlaylistParser.Tags.Media
                 return;
             }
 
-            duration = float.Parse(value[..separatorIndex], CultureInfo.InvariantCulture.NumberFormat);
+            duration = float.Parse(value[..separatorIndex], CultureInfo.InvariantCulture);
             title = value[(separatorIndex + 1)..];
         }
     }

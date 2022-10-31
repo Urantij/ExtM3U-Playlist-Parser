@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace PlaylistParser.Tags.Master
 {
     //https://datatracker.ietf.org/doc/html/rfc8216#section-4.3.4.2
@@ -16,7 +18,7 @@ namespace PlaylistParser.Tags.Master
 
         public XStreamInfTag(string value) : base(value)
         {
-            bandwidth = int.Parse(rawAttributes["BANDWIDTH"]);
+            bandwidth = int.Parse(rawAttributes["BANDWIDTH"], CultureInfo.InvariantCulture);
             TryGetIntAttribute("AVERAGE-BANDWIDTH", out averageBandwidth);
             TryGetQuotedStringAttribute("CODECS", out codecs);
             rawAttributes.TryGetValue("RESOLUTION", out resolution);

@@ -1,5 +1,8 @@
 namespace PlaylistParser
 {
+    /// <summary>
+    /// С плейлистом что-то не так.
+    /// </summary>
     public class PlaylistException : Exception
     {
         public PlaylistException(string message, Exception innerException) : base(message, innerException)

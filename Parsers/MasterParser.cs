@@ -19,9 +19,7 @@ namespace PlaylistParser.Parsers
         {
             StartParsing(text);
 
-            MasterPlaylist result = new(globalTags, variantStreams, mediaDict);
-
-            return result;
+            return new MasterPlaylist(globalTags, variantStreams, mediaDict);
         }
 
         protected override void ContinueParsing()
@@ -38,24 +36,24 @@ namespace PlaylistParser.Parsers
                     stream.videoMediaTags = mediaDict[stream.streamInfTag.video];
                 }
 
-                //TODO? также нужно сделать с SUBTITLES и CLOSED-CAPTIONS.
-                //Вообще, это же типа медиап, как-то можно через словарь сделать.
-                //но бля ну похуй ну да..
+                // TODO? также нужно сделать с SUBTITLES и CLOSED-CAPTIONS.
+                // Вообще, это же типа медиап, как-то можно через словарь сделать.
+                // но бля ну похуй ну да..
             }
         }
 
         protected override void OnTagLine(string tag, string? value)
         {
-            //зачем
-            //if (mediaPlaylistTags.Contains(tag) || mediaSegmentTags.Contains(tag)) throw new PlaylistException($"Bad tag in master playlist\n{tag}:{attributes}");
+            // зачем
+            // if (mediaPlaylistTags.Contains(tag) || mediaSegmentTags.Contains(tag)) throw new PlaylistException($"Bad tag in master playlist\n{tag}:{attributes}");
 
             if (tag == "#EXT-X-STREAM-INF")
             {
-                /* Зачем?
-                if (lastStreamInfTag != null)
-                {
-                    throw new PlaylistException("Repeated EXT-X-STREAM-INF tag");
-                }*/
+                // Зачем?
+                // if (lastStreamInfTag != null)
+                // {
+                //     throw new PlaylistException("Repeated EXT-X-STREAM-INF tag");
+                // }
 
                 lastStreamInfTag = new XStreamInfTag(value!);
                 return;

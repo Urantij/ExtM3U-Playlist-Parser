@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace PlaylistParser.Models
 {
     public class Resolution
@@ -16,7 +18,7 @@ namespace PlaylistParser.Models
         {
             string[] split = value.Split('x');
 
-            return new Resolution(int.Parse(split[0]), int.Parse(split[1]));
+            return new Resolution(int.Parse(split[0], CultureInfo.InvariantCulture), int.Parse(split[1], CultureInfo.InvariantCulture));
         }
     }
 }

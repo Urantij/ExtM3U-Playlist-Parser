@@ -45,6 +45,8 @@ namespace PlaylistParser.Parsers
             "#EXT-X-START"
         };
 
+        protected static readonly string[] listLinesSeparator = new string[] { "\r\n", "\n" };
+
         public event EventHandler<string>? CommentLineFound;
         public event EventHandler<string>? UnknownLineFound;
 
@@ -63,22 +65,12 @@ namespace PlaylistParser.Parsers
                  * character '#'.  Blank lines are ignored.  Whitespace MUST NOT be
                  * present, except for elements in which it is explicitly specified. */
 
-                //не знаю, как нормально сделать
-                string[] lines;
+                string[] lines = text.Split(listLinesSeparator, StringSplitOptions.None);
 
-                if (text.Contains("\r\n"))
-                {
-                    lines = text.Split("\r\n");
-                }
-                else
-                {
-                    lines = text.Split('\n');
-                }
-
-                //если это не так, хз, на что мы вообще смотрим.
+                // Если это не так, хз, на что мы вообще смотрим.
                 if (lines[0] != "#EXTM3U") throw new PlaylistException($"\"#EXTM3U\" != \"{lines[0]}\"");
 
-                //не уверен, зачем
+                // Не уверен, зачем.
                 if (lines.Length == 1) throw new PlaylistException($"1 line length");
 
                 for (int lineIndex = 0; lineIndex < lines.Length; lineIndex++)

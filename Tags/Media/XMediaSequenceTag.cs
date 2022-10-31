@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace PlaylistParser.Tags.Media
 {
     /// <summary>
@@ -9,7 +11,7 @@ namespace PlaylistParser.Tags.Media
 
         public XMediaSequenceTag(string value) : base(value)
         {
-            mediaSequenceNumber = int.Parse(value);
+            mediaSequenceNumber = int.Parse(value, CultureInfo.InvariantCulture);
         }
     }
 }
