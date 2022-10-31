@@ -11,6 +11,7 @@
     </Description>
     <Authors>Urantij</Authors>
     <RepositoryUrl>https://github.com/Urantij/ExtM3U-Playlist-Parser</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
