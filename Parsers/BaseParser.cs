@@ -47,12 +47,25 @@ namespace PlaylistParser.Parsers
 
         protected static readonly string[] listLinesSeparator = new string[] { "\r\n", "\n" };
 
+        /// <summary>
+        /// Комментарий это строка, начинающаяся с #, но не с #EXT
+        /// </summary>
         public event EventHandler<string>? CommentLineFound;
         public event EventHandler<string>? UnknownLineFound;
 
         /* TODO проблема, шо поля плейлистов публично доступны для изменений.
          * Можно копировать все поля в парсер, класть их все разом и ридоинл
          * Или Можно сделать гет интернал сет */
+        /// <summary>
+        /// Вызывает преобразования.
+        /// 
+        /// Если будет ошибка при парсинге, может кинуть какую-нибудь ошибку.
+        /// Но для нормальных плейлистов не кидает, вроде.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        /// <exception cref="PlaylistException"></exception>
+        /// <exception cref="Exception"></exception>
         public abstract T Parse(string text);
 
         protected void StartParsing(string text)
