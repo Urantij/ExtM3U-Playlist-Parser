@@ -1,6 +1,6 @@
-using PlaylistParser.Tags.Media;
+using ExtM3UPlaylistParser.Tags.Media;
 
-namespace PlaylistParser.Models
+namespace ExtM3UPlaylistParser.Models
 {
     //https://datatracker.ietf.org/doc/html/rfc8216#section-4.3.2
     public class MediaSegment

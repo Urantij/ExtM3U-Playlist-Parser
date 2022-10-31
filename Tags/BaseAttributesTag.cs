@@ -1,8 +1,8 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
-using PlaylistParser.Models;
+using ExtM3UPlaylistParser.Models;
 
-namespace PlaylistParser.Tags
+namespace ExtM3UPlaylistParser.Tags
 {
     /// <summary>
     /// Описывает вид тегов с атрибутами. 

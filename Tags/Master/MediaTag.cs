@@ -1,6 +1,6 @@
-using PlaylistParser.Models;
+using ExtM3UPlaylistParser.Models;
 
-namespace PlaylistParser.Tags.Master
+namespace ExtM3UPlaylistParser.Tags.Master
 {
     //https://datatracker.ietf.org/doc/html/rfc8216#section-4.3.4.1
     public class MediaTag : BaseAttributesTag

@@ -1,4 +1,4 @@
-namespace PlaylistParser.Models
+namespace ExtM3UPlaylistParser.Models
 {
     static class MediaType
     {

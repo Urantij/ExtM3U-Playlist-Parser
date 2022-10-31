@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace PlaylistParser.Tags.Master
+namespace ExtM3UPlaylistParser.Tags.Master
 {
     //https://datatracker.ietf.org/doc/html/rfc8216#section-4.3.4.2
     public class XStreamInfTag : BaseAttributesTag

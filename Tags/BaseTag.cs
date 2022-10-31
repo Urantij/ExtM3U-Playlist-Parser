@@ -1,4 +1,4 @@
-namespace PlaylistParser.Tags
+namespace ExtM3UPlaylistParser.Tags
 {
     /// <summary>
     /// Описывает определённый тип тегов

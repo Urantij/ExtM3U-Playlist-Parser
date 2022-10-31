@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace PlaylistParser.Tags.Media
+namespace ExtM3UPlaylistParser.Tags.Media
 {
     /// <summary>
     /// https://datatracker.ietf.org/doc/html/rfc8216#section-4.3.3.2

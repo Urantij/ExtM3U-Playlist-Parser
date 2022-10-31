@@ -1,4 +1,4 @@
-namespace PlaylistParser.Tags.Media
+namespace ExtM3UPlaylistParser.Tags.Media
 {
     public class XTwitchElapsedSecsTag : BaseTag
     {

@@ -1,4 +1,4 @@
-namespace PlaylistParser
+namespace ExtM3UPlaylistParser
 {
     /// <summary>
     /// С плейлистом что-то не так.

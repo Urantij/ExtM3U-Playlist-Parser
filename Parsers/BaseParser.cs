@@ -1,4 +1,4 @@
-namespace PlaylistParser.Parsers
+namespace ExtM3UPlaylistParser.Parsers
 {
     public abstract class BaseParser<T>
         where T : class

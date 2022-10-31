@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace PlaylistParser.Models
+namespace ExtM3UPlaylistParser.Models
 {
     public class Resolution
     {

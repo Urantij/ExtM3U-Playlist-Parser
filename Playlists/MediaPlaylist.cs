@@ -1,7 +1,7 @@
-using PlaylistParser.Models;
-using PlaylistParser.Tags.Media;
+using ExtM3UPlaylistParser.Models;
+using ExtM3UPlaylistParser.Tags.Media;
 
-namespace PlaylistParser.Playlists
+namespace ExtM3UPlaylistParser.Playlists
 {
     public class MediaPlaylist
     {

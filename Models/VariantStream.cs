@@ -1,6 +1,6 @@
-using PlaylistParser.Tags.Master;
+using ExtM3UPlaylistParser.Tags.Master;
 
-namespace PlaylistParser.Models
+namespace ExtM3UPlaylistParser.Models
 {
     /// <summary>
     /// В то время, как стриминфтег репрезентует собой вариант стрим, этот класс репрезентует собой стриминфтег + с ним связанные теги

@@ -1,7 +1,7 @@
-using PlaylistParser.Models;
-using PlaylistParser.Tags.Master;
+using ExtM3UPlaylistParser.Models;
+using ExtM3UPlaylistParser.Tags.Master;
 
-namespace PlaylistParser.Playlists
+namespace ExtM3UPlaylistParser.Playlists
 {
     public class MasterPlaylist
     {

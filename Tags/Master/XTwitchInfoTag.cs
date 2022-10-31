@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace PlaylistParser.Tags.Master
+namespace ExtM3UPlaylistParser.Tags.Master
 {
     public class XTwitchInfoTag : BaseAttributesTag
     {
