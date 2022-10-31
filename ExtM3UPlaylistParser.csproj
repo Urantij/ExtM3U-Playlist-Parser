@@ -9,6 +9,8 @@
     <Description>
       Парсит EXTM3U плейлисты, преимущественно с твича.
     </Description>
+    <Authors>Urantij</Authors>
+    <RepositoryUrl>https://github.com/Urantij/ExtM3U-Playlist-Parser</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
