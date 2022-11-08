@@ -12,7 +12,7 @@ MasterParser parser = new();
 parser.UnknownLineFound += (_, line) => OnUnknownPlaylistLine(line);
 parser.CommentLineFound += (_, line) => OnCommentPlaylistLine(line);
 
-MasterPlaylist playlist = parser.Parse(playlistContentStrin);
+MasterPlaylist masterPlaylist = parser.Parse(playlistContentString);
 
 ...
 ...
@@ -22,7 +22,7 @@ MediaParser parser = new();
 parser.UnknownLineFound += (_, line) => OnUnknownPlaylistLine(line);
 parser.CommentLineFound += (_, line) => OnCommentPlaylistLine(line);
 
-MediaPlaylist mediaPlaylist = parser.Parse(playlistContentStrin);
+MediaPlaylist mediaPlaylist = parser.Parse(playlistContentString);
 ```
 
 ## Чего нет
