@@ -7,9 +7,23 @@ TargetFramework net6.0
 
 ## Как использовать
 
-MasterParser и MediaParser для мастер и медиа плейлистов соответственно.
+```c#
+MasterParser parser = new();
+parser.UnknownLineFound += (_, line) => OnUnknownPlaylistLine(line);
+parser.CommentLineFound += (_, line) => OnCommentPlaylistLine(line);
 
-Метод Parse вернёт модель плейлиста. Всио.
+MasterPlaylist playlist = parser.Parse(playlistContentStrin);
+
+...
+...
+...
+
+MediaParser parser = new();
+parser.UnknownLineFound += (_, line) => OnUnknownPlaylistLine(line);
+parser.CommentLineFound += (_, line) => OnCommentPlaylistLine(line);
+
+MediaPlaylist mediaPlaylist = parser.Parse(playlistContentStrin);
+```
 
 ## Чего нет
 
