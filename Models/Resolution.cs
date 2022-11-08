@@ -13,6 +13,11 @@ namespace ExtM3UPlaylistParser.Models
             this.height = height;
         }
 
+        public bool Compare(Resolution resolution)
+        {
+            return this.width == resolution.width && this.height == resolution.height;
+        }
+
         /// <param name="value">1600x900</param>
         public static Resolution Parse(string value)
         {
