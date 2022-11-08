@@ -1,4 +1,5 @@
 using System.Globalization;
+using ExtM3UPlaylistParser.Models;
 
 namespace ExtM3UPlaylistParser.Tags.Master
 {
@@ -8,7 +9,7 @@ namespace ExtM3UPlaylistParser.Tags.Master
         public readonly int bandwidth;
         public readonly int? averageBandwidth;
         public readonly string? codecs;
-        public readonly string? resolution;
+        public readonly Resolution? resolution;
         public readonly float? frameRate;
         public readonly string? hdcpLevel;
         public readonly string? audio;
@@ -21,7 +22,7 @@ namespace ExtM3UPlaylistParser.Tags.Master
             bandwidth = int.Parse(rawAttributes["BANDWIDTH"], CultureInfo.InvariantCulture);
             TryGetIntAttribute("AVERAGE-BANDWIDTH", out averageBandwidth);
             TryGetQuotedStringAttribute("CODECS", out codecs);
-            rawAttributes.TryGetValue("RESOLUTION", out resolution);
+            TryGetResolutionAttribute("RESOLUTION", out resolution);
             TryGetFloatAttribute("FRAME-RATE", out frameRate);
             rawAttributes.TryGetValue("HDCP-LEVEL", out hdcpLevel);
             TryGetQuotedStringAttribute("AUDIO", out audio);
