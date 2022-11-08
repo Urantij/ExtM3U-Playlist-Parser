@@ -36,9 +36,15 @@ namespace ExtM3UPlaylistParser.Parsers
                     stream.videoMediaTags = mediaDict[stream.streamInfTag.video];
                 }
 
-                // TODO? также нужно сделать с SUBTITLES и CLOSED-CAPTIONS.
-                // Вообще, это же типа медиап, как-то можно через словарь сделать.
-                // но бля ну похуй ну да..
+                if (stream.streamInfTag.subtitles != null)
+                {
+                    stream.subtitlesMediaTags = mediaDict[stream.streamInfTag.subtitles];
+                }
+
+                if (stream.streamInfTag.closedCaptions != null)
+                {
+                    stream.closedCaptionsMediaTags = mediaDict[stream.streamInfTag.closedCaptions];
+                }
             }
         }
 

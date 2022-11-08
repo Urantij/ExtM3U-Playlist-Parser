@@ -19,6 +19,14 @@ namespace ExtM3UPlaylistParser.Models
         /// Нулл, если медиа нет
         /// </summary>
         public List<MediaTag>? audioMediaTags;
+        /// <summary>
+        /// Нулл, если медиа нет
+        /// </summary>
+        public List<MediaTag>? subtitlesMediaTags;
+        /// <summary>
+        /// Нулл, если медиа нет
+        /// </summary>
+        public List<MediaTag>? closedCaptionsMediaTags;
 
         public VariantStream(Uri uri, XStreamInfTag streamInfCommand)
         {
