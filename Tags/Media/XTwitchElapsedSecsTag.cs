@@ -1,12 +1,11 @@
-namespace ExtM3UPlaylistParser.Tags.Media
-{
-    public class XTwitchElapsedSecsTag : BaseTag
-    {
-        public readonly float elapsedSeconds;
+namespace ExtM3UPlaylistParser.Tags.Media;
 
-        public XTwitchElapsedSecsTag(string value) : base(value)
-        {
-            elapsedSeconds = float.Parse(value);
-        }
+public class XTwitchElapsedSecsTag : BaseTag
+{
+    public readonly float elapsedSeconds;
+
+    public XTwitchElapsedSecsTag(string value) : base(value)
+    {
+        elapsedSeconds = float.Parse(value);
     }
 }

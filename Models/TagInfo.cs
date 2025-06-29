@@ -1,14 +1,13 @@
-namespace ExtM3UPlaylistParser.Models
-{
-    public class TagInfo
-    {
-        public readonly string tag;
-        public readonly string? value;
+namespace ExtM3UPlaylistParser.Models;
 
-        public TagInfo(string tag, string? value)
-        {
-            this.tag = tag;
-            this.value = value;
-        }
+public class TagInfo
+{
+    public readonly string tag;
+    public readonly string? value;
+
+    public TagInfo(string tag, string? value)
+    {
+        this.tag = tag;
+        this.value = value;
     }
 }
