@@ -4,13 +4,13 @@ namespace ExtM3UPlaylistParser.Models;
 
 public class Resolution
 {
-    public readonly int width;
-    public readonly int height;
+    public readonly int Width;
+    public readonly int Height;
 
     public Resolution(int width, int height)
     {
-        this.width = width;
-        this.height = height;
+        this.Width = width;
+        this.Height = height;
     }
 
     /// <param name="value">1600x900</param>

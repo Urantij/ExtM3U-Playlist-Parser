@@ -8,10 +8,10 @@ public abstract class BaseTag
     /// <summary>
     /// Текст после тега
     /// </summary>
-    public readonly string value;
+    public readonly string Value;
 
     public BaseTag(string value)
     {
-        this.value = value;
+        this.Value = value;
     }
 }

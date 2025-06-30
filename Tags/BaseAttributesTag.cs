@@ -11,22 +11,22 @@ namespace ExtM3UPlaylistParser.Tags;
 public class BaseAttributesTag : BaseTag
 {
     //https://datatracker.ietf.org/doc/html/rfc8216#section-4.2
-    private static readonly Regex attributesRegex =
+    private static readonly Regex AttributesRegex =
         new(@"(?<Name>[A-Z0-9\-]+)=((""(?<Value>.*?)"")|(?<Value>.*?))($|[,;])", RegexOptions.Compiled);
 
-    public Dictionary<string, string> rawAttributes;
+    public Dictionary<string, string> RawAttributes;
 
     public BaseAttributesTag(string value) : base(value)
     {
-        var matches = attributesRegex.Matches(value);
+        var matches = AttributesRegex.Matches(value);
 
-        rawAttributes = matches.ToDictionary(key => key.Groups["Name"].Value,
+        RawAttributes = matches.ToDictionary(key => key.Groups["Name"].Value,
             value => value.Groups["Value"].Value);
     }
 
     protected bool TryGetResolutionAttribute(string key, out Resolution? value)
     {
-        if (rawAttributes.TryGetValue(key, out string? stringValue))
+        if (RawAttributes.TryGetValue(key, out string? stringValue))
         {
             value = Resolution.Parse(stringValue);
             return true;
@@ -38,7 +38,7 @@ public class BaseAttributesTag : BaseTag
 
     protected bool TryGetQuotedStringAttribute(string key, out string? value)
     {
-        if (rawAttributes.TryGetValue(key, out value))
+        if (RawAttributes.TryGetValue(key, out value))
         {
             return true;
         }
@@ -49,7 +49,7 @@ public class BaseAttributesTag : BaseTag
 
     protected bool TryGetBoolAttribute(string key, out bool value, bool @default = false)
     {
-        if (rawAttributes.TryGetValue(key, out string? stringValue))
+        if (RawAttributes.TryGetValue(key, out string? stringValue))
         {
             value = stringValue == "YES";
 
@@ -62,7 +62,7 @@ public class BaseAttributesTag : BaseTag
 
     protected bool TryGetIntAttribute(string key, out int? value)
     {
-        if (rawAttributes.TryGetValue(key, out string? stringValue))
+        if (RawAttributes.TryGetValue(key, out string? stringValue))
         {
             value = int.Parse(stringValue, CultureInfo.InvariantCulture);
             return true;
@@ -74,7 +74,7 @@ public class BaseAttributesTag : BaseTag
 
     protected bool TryGetFloatAttribute(string key, out float? value)
     {
-        if (rawAttributes.TryGetValue(key, out string? stringValue))
+        if (RawAttributes.TryGetValue(key, out string? stringValue))
         {
             value = float.Parse(stringValue, CultureInfo.InvariantCulture);
             return true;

@@ -7,8 +7,8 @@ namespace ExtM3UPlaylistParser.Tags.Media;
 /// </summary>
 public class InfTag : BaseTag
 {
-    public readonly float duration;
-    public readonly string? title;
+    public readonly float Duration;
+    public readonly string? Title;
 
     public InfTag(string value)
         : base(value)
@@ -17,11 +17,11 @@ public class InfTag : BaseTag
 
         if (separatorIndex == -1)
         {
-            duration = float.Parse(value);
+            Duration = float.Parse(value);
             return;
         }
 
-        duration = float.Parse(value[..separatorIndex], CultureInfo.InvariantCulture);
-        title = value[(separatorIndex + 1)..];
+        Duration = float.Parse(value[..separatorIndex], CultureInfo.InvariantCulture);
+        Title = value[(separatorIndex + 1)..];
     }
 }

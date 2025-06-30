@@ -5,21 +5,21 @@ namespace ExtM3UPlaylistParser.Playlists;
 
 public class MediaPlaylist
 {
-    public readonly List<TagInfo> globalTags = new();
-    public readonly List<MediaSegment> mediaSegments = new();
+    public readonly List<TagInfo> GlobalTags = new();
+    public readonly List<MediaSegment> MediaSegments = new();
 
-    public readonly XTargetDurationTag targetDurationTag;
-    public readonly XMediaSequenceTag? mediaSequenceTag;
+    public readonly XTargetDurationTag TargetDurationTag;
+    public readonly XMediaSequenceTag? MediaSequenceTag;
 
-    public readonly bool endList = false;
+    public readonly bool EndList = false;
 
     public MediaPlaylist(List<TagInfo> globalTags, List<MediaSegment> mediaSegments,
         XTargetDurationTag targetDurationTag, XMediaSequenceTag? mediaSequenceTag, bool endList)
     {
-        this.globalTags = globalTags;
-        this.mediaSegments = mediaSegments;
-        this.targetDurationTag = targetDurationTag;
-        this.mediaSequenceTag = mediaSequenceTag;
-        this.endList = endList;
+        this.GlobalTags = globalTags;
+        this.MediaSegments = mediaSegments;
+        this.TargetDurationTag = targetDurationTag;
+        this.MediaSequenceTag = mediaSequenceTag;
+        this.EndList = endList;
     }
 }

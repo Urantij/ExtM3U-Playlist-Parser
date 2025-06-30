@@ -7,10 +7,10 @@ namespace ExtM3UPlaylistParser.Tags.Media;
 /// </summary>
 public class XTargetDurationTag : BaseTag
 {
-    public readonly int targetDuration;
+    public readonly int TargetDuration;
 
     public XTargetDurationTag(string value) : base(value)
     {
-        targetDuration = int.Parse(value, CultureInfo.InvariantCulture);
+        TargetDuration = int.Parse(value, CultureInfo.InvariantCulture);
     }
 }

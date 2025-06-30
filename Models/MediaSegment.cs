@@ -5,35 +5,35 @@ namespace ExtM3UPlaylistParser.Models;
 //https://datatracker.ietf.org/doc/html/rfc8216#section-4.3.2
 public class MediaSegment
 {
-    public readonly Uri uri;
+    public readonly Uri Uri;
 
     //вообще логичнее тут было использовать массив, но смысла мало
     /// <summary>
     /// Содержит теги, которые не расфасовались по полям.
     /// </summary>
-    public readonly List<TagInfo> unAddedTags;
+    public readonly List<TagInfo> UnAddedTags;
 
     /// <summary>
     /// Обязательный
     /// </summary>
-    public readonly InfTag infTag;
+    public readonly InfTag InfTag;
 
-    public readonly XProgramDateTimeTag? programDateTag;
+    public readonly XProgramDateTimeTag? ProgramDateTag;
 
     public MediaSegment(Uri uri, List<TagInfo> tags)
     {
-        this.uri = uri;
-        this.unAddedTags = tags;
+        this.Uri = uri;
+        this.UnAddedTags = tags;
 
-        var extInfTagInfo = tags.Single(t => t.tag == "#EXTINF");
+        var extInfTagInfo = tags.Single(t => t.Tag == "#EXTINF");
         tags.Remove(extInfTagInfo);
-        infTag = new InfTag(extInfTagInfo.value!);
+        InfTag = new InfTag(extInfTagInfo.Value!);
 
-        var programDateTagInfo = tags.SingleOrDefault(t => t.tag == "#EXT-X-PROGRAM-DATE-TIME");
+        var programDateTagInfo = tags.SingleOrDefault(t => t.Tag == "#EXT-X-PROGRAM-DATE-TIME");
         if (programDateTagInfo != null)
         {
             tags.Remove(programDateTagInfo);
-            programDateTag = new XProgramDateTimeTag(programDateTagInfo.value!);
+            ProgramDateTag = new XProgramDateTimeTag(programDateTagInfo.Value!);
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace ExtM3UPlaylistParser;
+namespace ExtM3UPlaylistParser.Exceptions;
 
 /// <summary>
 /// С плейлистом что-то не так.

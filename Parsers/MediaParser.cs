@@ -1,3 +1,4 @@
+using ExtM3UPlaylistParser.Exceptions;
 using ExtM3UPlaylistParser.Models;
 using ExtM3UPlaylistParser.Playlists;
 using ExtM3UPlaylistParser.Tags.Media;
@@ -8,26 +9,26 @@ public class MediaParser : BaseParser<MediaPlaylist>
 {
     /* В процессе парсинга, если мы встречаем теги медиа сегментов, мы должны их хранить.
      * А затем, когда находим ссылку, скрепляем это всё вместе и записываем. */
-    private List<TagInfo> currentMediaSegmentsTags = new();
+    private List<TagInfo> _currentMediaSegmentsTags = new();
 
-    private readonly List<TagInfo> globalTags = new();
-    private readonly List<MediaSegment> mediaSegments = new();
+    private readonly List<TagInfo> _globalTags = new();
+    private readonly List<MediaSegment> _mediaSegments = new();
 
-    private XTargetDurationTag? targetDurationTag;
-    private XMediaSequenceTag? mediaSequenceTag;
-    private bool endList = false;
+    private XTargetDurationTag? _targetDurationTag;
+    private XMediaSequenceTag? _mediaSequenceTag;
+    private bool _endList = false;
 
     public override MediaPlaylist Parse(string text)
     {
         StartParsing(text);
 
         // The EXT-X-TARGETDURATION tag is REQUIRED
-        if (targetDurationTag == null)
+        if (_targetDurationTag == null)
         {
-            throw new PlaylistException($"{nameof(MediaPlaylist)} {nameof(targetDurationTag)}");
+            throw new PlaylistException($"{nameof(MediaPlaylist)} {nameof(_targetDurationTag)}");
         }
 
-        return new MediaPlaylist(globalTags, mediaSegments, targetDurationTag, mediaSequenceTag, endList);
+        return new MediaPlaylist(_globalTags, _mediaSegments, _targetDurationTag, _mediaSequenceTag, _endList);
     }
 
     /*protected override void ContinueParsing(string text)
@@ -44,34 +45,34 @@ public class MediaParser : BaseParser<MediaPlaylist>
         // можно было бы быть 5хедом и сделать словарик, но как бы ну как бы ну как бы ну впадлу да
         if (tag == "#EXT-X-TARGETDURATION")
         {
-            targetDurationTag = new XTargetDurationTag(value!);
+            _targetDurationTag = new XTargetDurationTag(value!);
             return;
         }
         else if (tag == "#EXT-X-ENDLIST")
         {
-            endList = true;
+            _endList = true;
             return;
         }
         else if (tag == "#EXT-X-MEDIA-SEQUENCE")
         {
-            mediaSequenceTag = new XMediaSequenceTag(value!);
+            _mediaSequenceTag = new XMediaSequenceTag(value!);
             return;
         }
 
         var tagInfo = new TagInfo(tag, value);
 
-        var list = mediaSegmentTags.Contains(tag) ? currentMediaSegmentsTags : globalTags;
+        var list = MediaSegmentTags.Contains(tag) ? _currentMediaSegmentsTags : _globalTags;
 
         list.Add(tagInfo);
     }
 
     protected override void OnUriLine(string tag, Uri uri)
     {
-        if (currentMediaSegmentsTags.Count == 0) throw new PlaylistException($"Missing media segment tags\n{uri}");
+        if (_currentMediaSegmentsTags.Count == 0) throw new PlaylistException($"Missing media segment tags\n{uri}");
 
-        var media = new MediaSegment(uri, currentMediaSegmentsTags);
-        mediaSegments.Add(media);
+        var media = new MediaSegment(uri, _currentMediaSegmentsTags);
+        _mediaSegments.Add(media);
 
-        currentMediaSegmentsTags = new List<TagInfo>();
+        _currentMediaSegmentsTags = new List<TagInfo>();
     }
 }

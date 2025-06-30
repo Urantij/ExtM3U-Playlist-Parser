@@ -8,33 +8,33 @@ namespace ExtM3UPlaylistParser.Models;
 /// </summary>
 public class VariantStream
 {
-    public readonly Uri uri;
+    public readonly Uri Uri;
 
-    public readonly XStreamInfTag streamInfTag;
-
-    /// <summary>
-    /// Нулл, если медиа нет
-    /// </summary>
-    public List<MediaTag>? videoMediaTags;
+    public readonly XStreamInfTag StreamInfTag;
 
     /// <summary>
     /// Нулл, если медиа нет
     /// </summary>
-    public List<MediaTag>? audioMediaTags;
+    public List<MediaTag>? VideoMediaTags;
 
     /// <summary>
     /// Нулл, если медиа нет
     /// </summary>
-    public List<MediaTag>? subtitlesMediaTags;
+    public List<MediaTag>? AudioMediaTags;
 
     /// <summary>
     /// Нулл, если медиа нет
     /// </summary>
-    public List<MediaTag>? closedCaptionsMediaTags;
+    public List<MediaTag>? SubtitlesMediaTags;
+
+    /// <summary>
+    /// Нулл, если медиа нет
+    /// </summary>
+    public List<MediaTag>? ClosedCaptionsMediaTags;
 
     public VariantStream(Uri uri, XStreamInfTag streamInfCommand)
     {
-        this.uri = uri;
-        this.streamInfTag = streamInfCommand;
+        this.Uri = uri;
+        this.StreamInfTag = streamInfCommand;
     }
 }

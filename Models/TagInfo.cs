@@ -2,12 +2,12 @@ namespace ExtM3UPlaylistParser.Models;
 
 public class TagInfo
 {
-    public readonly string tag;
-    public readonly string? value;
+    public readonly string Tag;
+    public readonly string? Value;
 
     public TagInfo(string tag, string? value)
     {
-        this.tag = tag;
-        this.value = value;
+        this.Tag = tag;
+        this.Value = value;
     }
 }

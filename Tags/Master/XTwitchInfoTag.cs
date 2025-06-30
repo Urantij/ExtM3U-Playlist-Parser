@@ -4,10 +4,10 @@ namespace ExtM3UPlaylistParser.Tags.Master;
 
 public class XTwitchInfoTag : BaseAttributesTag
 {
-    public readonly float streamTime;
+    public readonly float StreamTime;
 
     public XTwitchInfoTag(string value) : base(value)
     {
-        streamTime = float.Parse(rawAttributes["STREAM-TIME"], CultureInfo.InvariantCulture);
+        StreamTime = float.Parse(RawAttributes["STREAM-TIME"], CultureInfo.InvariantCulture);
     }
 }

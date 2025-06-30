@@ -7,10 +7,10 @@ namespace ExtM3UPlaylistParser.Tags.Media;
 /// </summary>
 public class XMediaSequenceTag : BaseTag
 {
-    public readonly int mediaSequenceNumber;
+    public readonly int MediaSequenceNumber;
 
     public XMediaSequenceTag(string value) : base(value)
     {
-        mediaSequenceNumber = int.Parse(value, CultureInfo.InvariantCulture);
+        MediaSequenceNumber = int.Parse(value, CultureInfo.InvariantCulture);
     }
 }

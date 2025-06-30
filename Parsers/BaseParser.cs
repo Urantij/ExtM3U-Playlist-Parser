@@ -1,15 +1,17 @@
+using ExtM3UPlaylistParser.Exceptions;
+
 namespace ExtM3UPlaylistParser.Parsers;
 
 public abstract class BaseParser<T>
     where T : class
 {
-    protected static readonly HashSet<string> basicPlaylistTags = new()
+    protected static readonly HashSet<string> BasicPlaylistTags = new()
     {
         "#EXTM3U",
         "#EXT-X-VERSION"
     };
 
-    protected static readonly HashSet<string> mediaSegmentTags = new()
+    protected static readonly HashSet<string> MediaSegmentTags = new()
     {
         "#EXTINF",
         "#EXT-X-BYTERANGE",
@@ -20,7 +22,7 @@ public abstract class BaseParser<T>
         "#EXT-X-DATERANGE"
     };
 
-    protected static readonly HashSet<string> mediaPlaylistTags = new()
+    protected static readonly HashSet<string> MediaPlaylistTags = new()
     {
         "#EXT-X-TARGETDURATION",
         "#EXT-X-MEDIA-SEQUENCE",
@@ -30,7 +32,7 @@ public abstract class BaseParser<T>
         "#EXT-X-I-FRAMES-ONLY"
     };
 
-    protected static readonly HashSet<string> masterPlaylistTags = new()
+    protected static readonly HashSet<string> MasterPlaylistTags = new()
     {
         "#EXT-X-MEDIA",
         "#EXT-X-STREAM-INF",
@@ -39,13 +41,13 @@ public abstract class BaseParser<T>
         "#EXT-X-SESSION-KEY"
     };
 
-    protected static readonly HashSet<string> mediaOrMasterPlaylistTags = new()
+    protected static readonly HashSet<string> MediaOrMasterPlaylistTags = new()
     {
         "#EXT-X-INDEPENDENT-SEGMENTS",
         "#EXT-X-START"
     };
 
-    protected static readonly string[] listLinesSeparator = new string[] { "\r\n", "\n" };
+    protected static readonly string[] ListLinesSeparator = new string[] { "\r\n", "\n" };
 
     /// <summary>
     /// Комментарий это строка, начинающаяся с #, но не с #EXT
@@ -79,7 +81,7 @@ public abstract class BaseParser<T>
              * character '#'.  Blank lines are ignored.  Whitespace MUST NOT be
              * present, except for elements in which it is explicitly specified. */
 
-            string[] lines = text.Split(listLinesSeparator, StringSplitOptions.None);
+            string[] lines = text.Split(ListLinesSeparator, StringSplitOptions.None);
 
             // Если это не так, хз, на что мы вообще смотрим.
             if (lines[0] != "#EXTM3U") throw new PlaylistException($"\"#EXTM3U\" != \"{lines[0]}\"");

@@ -6,28 +6,28 @@ namespace ExtM3UPlaylistParser.Tags.Master;
 //https://datatracker.ietf.org/doc/html/rfc8216#section-4.3.4.2
 public class XStreamInfTag : BaseAttributesTag
 {
-    public readonly int bandwidth;
-    public readonly int? averageBandwidth;
-    public readonly string? codecs;
-    public readonly Resolution? resolution;
-    public readonly float? frameRate;
-    public readonly string? hdcpLevel;
-    public readonly string? audio;
-    public readonly string? video;
-    public readonly string? subtitles;
-    public readonly string? closedCaptions;
+    public readonly int Bandwidth;
+    public readonly int? AverageBandwidth;
+    public readonly string? Codecs;
+    public readonly Resolution? Resolution;
+    public readonly float? FrameRate;
+    public readonly string? HdcpLevel;
+    public readonly string? Audio;
+    public readonly string? Video;
+    public readonly string? Subtitles;
+    public readonly string? ClosedCaptions;
 
     public XStreamInfTag(string value) : base(value)
     {
-        bandwidth = int.Parse(rawAttributes["BANDWIDTH"], CultureInfo.InvariantCulture);
-        TryGetIntAttribute("AVERAGE-BANDWIDTH", out averageBandwidth);
-        TryGetQuotedStringAttribute("CODECS", out codecs);
-        TryGetResolutionAttribute("RESOLUTION", out resolution);
-        TryGetFloatAttribute("FRAME-RATE", out frameRate);
-        rawAttributes.TryGetValue("HDCP-LEVEL", out hdcpLevel);
-        TryGetQuotedStringAttribute("AUDIO", out audio);
-        TryGetQuotedStringAttribute("VIDEO", out video);
-        TryGetQuotedStringAttribute("SUBTITLES", out subtitles);
-        TryGetQuotedStringAttribute("CLOSED-CAPTIONS", out closedCaptions);
+        Bandwidth = int.Parse(RawAttributes["BANDWIDTH"], CultureInfo.InvariantCulture);
+        TryGetIntAttribute("AVERAGE-BANDWIDTH", out AverageBandwidth);
+        TryGetQuotedStringAttribute("CODECS", out Codecs);
+        TryGetResolutionAttribute("RESOLUTION", out Resolution);
+        TryGetFloatAttribute("FRAME-RATE", out FrameRate);
+        RawAttributes.TryGetValue("HDCP-LEVEL", out HdcpLevel);
+        TryGetQuotedStringAttribute("AUDIO", out Audio);
+        TryGetQuotedStringAttribute("VIDEO", out Video);
+        TryGetQuotedStringAttribute("SUBTITLES", out Subtitles);
+        TryGetQuotedStringAttribute("CLOSED-CAPTIONS", out ClosedCaptions);
     }
 }

@@ -5,10 +5,10 @@ namespace ExtM3UPlaylistParser.Tags.Media;
 /// </summary>
 public class XProgramDateTimeTag : BaseTag
 {
-    public readonly DateTimeOffset time;
+    public readonly DateTimeOffset Time;
 
     public XProgramDateTimeTag(string value) : base(value)
     {
-        time = DateTimeOffset.Parse(value);
+        Time = DateTimeOffset.Parse(value);
     }
 }
