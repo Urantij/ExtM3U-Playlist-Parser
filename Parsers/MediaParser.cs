@@ -11,6 +11,12 @@ public class MediaParser : BaseParser<MediaPlaylist>
      * А затем, когда находим ссылку, скрепляем это всё вместе и записываем. */
     private List<TagInfo> _currentMediaSegmentsTags = new();
 
+    /// <summary>
+    /// Теги, которые добавятся в сегменты.
+    /// Эти теги могут быть общими между несколькими сегментами
+    /// </summary>
+    private readonly List<TagInfo> _rollingTags = new();
+
     private readonly List<TagInfo> _globalTags = new();
     private readonly List<MediaSegment> _mediaSegments = new();
 
@@ -59,16 +65,32 @@ public class MediaParser : BaseParser<MediaPlaylist>
             return;
         }
 
-        var tagInfo = new TagInfo(tag, value);
+        TagInfo tagInfo = new(tag, value);
 
-        var list = MediaSegmentTags.Contains(tag) ? _currentMediaSegmentsTags : _globalTags;
+        if (MediaPlaylistRollingTags.Contains(tag))
+        {
+            TagInfo? existing = _rollingTags.FirstOrDefault(r => r.Tag == tag);
 
-        list.Add(tagInfo);
+            if (existing != null)
+                _rollingTags.Remove(existing);
+
+            _rollingTags.Add(tagInfo);
+        }
+        else if (MediaSegmentTags.Contains(tag))
+        {
+            _currentMediaSegmentsTags.Add(tagInfo);
+        }
+        else
+        {
+            _globalTags.Add(tagInfo);
+        }
     }
 
     protected override void OnUriLine(string tag, Uri uri)
     {
         if (_currentMediaSegmentsTags.Count == 0) throw new PlaylistException($"Missing media segment tags\n{uri}");
+
+        _currentMediaSegmentsTags.AddRange(_rollingTags);
 
         var media = new MediaSegment(uri, _currentMediaSegmentsTags);
         _mediaSegments.Add(media);

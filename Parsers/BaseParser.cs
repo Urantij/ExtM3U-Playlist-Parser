@@ -11,17 +11,20 @@ public abstract class BaseParser<T>
         "#EXT-X-VERSION"
     };
 
+    /// <summary>
+    /// Применяются только к следующему медиа сегменту.
+    /// </summary>
     protected static readonly HashSet<string> MediaSegmentTags = new()
     {
         "#EXTINF",
         "#EXT-X-BYTERANGE",
         "#EXT-X-DISCONTINUITY",
-        "#EXT-X-KEY",
-        "#EXT-X-MAP",
-        "#EXT-X-PROGRAM-DATE-TIME",
-        "#EXT-X-DATERANGE"
+        "#EXT-X-PROGRAM-DATE-TIME"
     };
 
+    /// <summary>
+    /// На весь плейлист
+    /// </summary>
     protected static readonly HashSet<string> MediaPlaylistTags = new()
     {
         "#EXT-X-TARGETDURATION",
@@ -29,7 +32,19 @@ public abstract class BaseParser<T>
         "#EXT-X-DISCONTINUITY-SEQUENCE",
         "#EXT-X-ENDLIST",
         "#EXT-X-PLAYLIST-TYPE",
-        "#EXT-X-I-FRAMES-ONLY"
+        "#EXT-X-I-FRAMES-ONLY",
+        // https://datatracker.ietf.org/doc/html/rfc8216#section-4.3.2.7 тут он как медиа сегмент атрибут, но по факту.. не понимаю
+        "#EXT-X-DATERANGE"
+    };
+    
+    /// <summary>
+    /// Применяются ко всех медиа сегментам, которые идут после этого тега
+    /// </summary>
+    protected static readonly HashSet<string> MediaPlaylistRollingTags = new()
+    {
+        // Тут немного сложно, так как роляет формат... но я это делать не буду :)
+        "#EXT-X-KEY",
+        "#EXT-X-MAP",
     };
 
     protected static readonly HashSet<string> MasterPlaylistTags = new()
